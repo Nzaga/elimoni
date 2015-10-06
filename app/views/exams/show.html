@@ -1,0 +1,61 @@
+<%- layout('layout.html') %>
+
+<div class="page-header">
+  <h1>Exam</h1>
+</div>
+
+<dl class="dl-horizontal">
+  
+      <dt><strong>Subject</strong></dt>
+      <dd><%= exam.subject %></dd>
+  
+      <dt><strong>SeriesNo</strong></dt>
+      <dd><%= exam.seriesNo %></dd>
+  
+      <dt><strong>Published</strong></dt>
+      <dd><%= exam.published %></dd>
+  
+      <dt><strong>Released</strong></dt>
+      <dd><%= exam.released %></dd>
+  
+      <dt><strong>Fee</strong></dt>
+      <dd><%= exam.fee %></dd>
+  
+      <dt><strong>Student</strong></dt>
+      <dd><%= exam.students %></dd>
+  
+      <dt><strong>TotalAmount</strong></dt>
+      <dd><%= exam.totalAmount %></dd>
+  
+      <dt><strong>WeekStudent</strong></dt>
+      <dd><%= exam.weekStudents %></dd>
+  
+      <dt><strong>WeekTotal</strong></dt>
+      <dd><%= exam.weekTotal %></dd>
+  
+      <dt><strong>Time</strong></dt>
+      <dd><%= exam.time %></dd>
+  
+      <dt><strong>Instruction</strong></dt>
+      <dd><%= exam.instruction %></dd>
+  
+      <dt><strong>Level</strong></dt>
+      <dd><%= exam.level %></dd>
+  
+      <dt><strong>Status</strong></dt>
+      <dd><%= exam.status %></dd>
+  
+      <dt><strong>Question</strong></dt>
+      <dd><%= exam.question %></dd>
+  
+</dl>
+
+<div class="pull-right">
+	<a href="/exams/<%= exam._id %>/edit" title="Edit exam" class="btn btn-primary">
+        Edit
+  </a>
+	<form method="POST" action="/exams/<%= exam._id %>?_method=DELETE" role="form">
+        <button type="submit" class="btn btn-danger" title="Delete exam">Delete</button>
+  </form>
+	<a href="/exams" class="btn btn-default" title="View all exams">Back</a>
+</div>

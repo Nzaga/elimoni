@@ -1,0 +1,43 @@
+<%- layout('layout.html') %>
+
+<div class="page-header">
+  <h1>Tutor</h1>
+</div>
+
+<dl class="dl-horizontal">
+  
+      <dt><strong>Center</strong></dt>
+      <dd><%= tutor.center %></dd>
+  
+      <dt><strong>Name</strong></dt>
+      <dd><%= tutor.name %></dd>
+  
+      <dt><strong>Title</strong></dt>
+      <dd><%= tutor.title %></dd>
+  
+      <dt><strong>School</strong></dt>
+      <dd><%= tutor.school %></dd>
+  
+      <dt><strong>Subject</strong></dt>
+      <dd><%= tutor.subject %></dd>
+  
+      <dt><strong>TestPrepared</strong></dt>
+      <dd><%= tutor.testPrepared %></dd>
+  
+      <dt><strong>Publish</strong></dt>
+      <dd><%= tutor.publish %></dd>
+  
+      <dt><strong>Release</strong></dt>
+      <dd><%= tutor.release %></dd>
+  
+</dl>
+
+<div class="pull-right">
+	<a href="/tutors/<%= tutor._id %>/edit" title="Edit tutor" class="btn btn-primary">
+        Edit
+  </a>
+	<form method="POST" action="/tutors/<%= tutor._id %>?_method=DELETE" role="form">
+        <button type="submit" class="btn btn-danger" title="Delete tutor">Delete</button>
+  </form>
+	<a href="/tutors" class="btn btn-default" title="View all tutors">Back</a>
+</div>

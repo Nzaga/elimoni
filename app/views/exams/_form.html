@@ -1,0 +1,252 @@
+<%-partial('../_partials/_errors.html')%>
+
+<form action="<%= exam._id ? '/exams/'+ exam._id +'?_method=PUT' : '/exams' %>" method="POST" class="form-horizontal" role="form">
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="subject" class="col-sm-2 control-label">Subject</label>
+                <div class="col-sm-10">
+                    <!-- <input type="text" name="subject" id="subject" class="form-control" value="<%= exam.subject ? exam.subject : '' %>" required="required" title="Subject" placeholder="Subject"> -->
+
+                    <select class="form-control" id="subject" name="subject" value="<%= exam.subject ? exam.subject : '' %>" required="required" title="Subject" placeholder="Subject">
+                    <option></option>
+                    <option>Math</option>
+                    <option>Biology</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                  </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="level" class="col-sm-2 control-label">Level</label>
+                <div class="col-sm-10">
+                    <!-- <input type="text" name="level" id="level" class="form-control" value="<%= exam.level ? exam.level : '' %>" required="required" title="Level" placeholder="Level"> -->
+
+                    <select class="form-control" name="level" id="level" value="<%= exam.level ? exam.level : '' %>" required="required" title="Level" placeholder="Level">
+                        <option></option>
+                        <option>Form 1</option>
+                        <option>Form 2</option>
+                        <option>Form 3</option>
+                        <option>Form 4</option>
+                        <option>Form 5</option>
+                        <option>Form 6</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="time" class="col-sm-2 control-label">Time</label>
+                <div class="col-sm-10">
+                     <!-- <input type="text" name="time" id="time" class="form-control" value="<%= exam.time ? exam.time : '' %>" required="required" title="Time" placeholder="Time">  -->
+
+                     <select name="time" id="time" class="form-control" value="<%= exam.time ? exam.time : '' %>" required="required" title="Time" placeholder="Time">
+                        <option></option>
+                        <option>1.0 hr</option>
+                        <option>1.5 hrs</option>
+                        <option>2.0 hrs</option>
+                        <option>2.5 hrs</option>
+                        <option>3.0 hrs</option>
+                    </select> 
+                </div>
+             </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fee" class="col-sm-2 control-label">Fee</label>
+                <div class="col-sm-10">
+                    <!-- <input type="number" name="fee" id="fee" class="form-control" value="<%= exam.fee ? exam.fee : '' %>" required="required" title="Fee" placeholder="500"> -->
+                    <select class="form-control" id="fee" name="fee" value="<%= exam.fee ? exam.fee : '' %>" required="required" title="Fee" placeholder="500">
+                        <option>500</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- <div class="form-group">
+        <label for="seriesNo" class="col-sm-2 control-label">SeriesNo</label>
+        <div class="col-sm-10">
+            <input type="number" name="seriesNo" id="seriesNo" class="form-control" value="<%= exam.seriesNo ? exam.seriesNo : '' %>" required="required" title="SeriesNo" placeholder="SeriesNo">
+        </div>
+	</div> -->
+    
+   <!--  <div class="form-group">
+        <label for="published" class="col-sm-2 control-label">Published</label>
+        <div class="col-sm-10">
+            <input type="date" name="published" id="published" class="form-control" value="<%= exam.published ? exam.published : '' %>" required="required" title="Published" placeholder="Published">
+        </div>
+	</div>
+    
+    <div class="form-group">
+        <label for="released" class="col-sm-2 control-label">Released</label>
+        <div class="col-sm-10">
+            <input type="date" name="released" id="released" class="form-control" value="<%= exam.released ? exam.released : '' %>" required="required" title="Released" placeholder="Released">
+        </div>
+	</div> -->
+    
+    
+    
+    <!-- <div class="form-group">
+        <label for="students" class="col-sm-2 control-label">Student</label>
+        <div class="col-sm-10">
+            <input type="number" name="students" id="students" class="form-control" value="<%= exam.students ? exam.students : '' %>" required="required" title="Student" placeholder="Student">
+        </div>
+	</div>
+    
+    <div class="form-group">
+        <label for="totalAmount" class="col-sm-2 control-label">TotalAmount</label>
+        <div class="col-sm-10">
+            <input type="number" name="totalAmount" id="totalAmount" class="form-control" value="<%= exam.totalAmount ? exam.totalAmount : '' %>" required="required" title="TotalAmount" placeholder="TotalAmount">
+        </div>
+	</div> -->
+    
+    <!-- <div class="form-group">
+        <label for="weekStudents" class="col-sm-2 control-label">WeekStudent</label>
+        <div class="col-sm-10">
+            <input type="number" name="weekStudents" id="weekStudents" class="form-control" value="<%= exam.weekStudents ? exam.weekStudents : '' %>" required="required" title="WeekStudent" placeholder="WeekStudent">
+        </div>
+	</div>
+    
+    <div class="form-group">
+        <label for="weekTotal" class="col-sm-2 control-label">WeekTotal</label>
+        <div class="col-sm-10">
+            <input type="number" name="weekTotal" id="weekTotal" class="form-control" value="<%= exam.weekTotal ? exam.weekTotal : '' %>" required="required" title="WeekTotal" placeholder="WeekTotal">
+        </div>
+	</div> -->
+    
+    
+    
+    <!-- <div class="form-group">
+        <label for="instruction" class="col-sm-2 control-label">Instruction</label>
+        <div class="col-sm-10">
+            <input type="text" name="instruction" id="instruction" class="form-control" value="<%= exam.instruction ? exam.instruction : '' %>" required="required" title="Instruction" placeholder="Instruction">
+        </div>
+	</div> -->
+    
+    
+    
+    <!-- <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">Status</label>
+        <div class="col-sm-10">
+            <input type="text" name="status" id="status" class="form-control" value="<%= exam.status ? exam.status : '' %>" required="required" title="Status" placeholder="Status">
+        </div>
+	</div> -->
+    
+     <!-- <div class="form-group">
+        <label for="question" class="col-sm-2 control-label">Question</label>
+        <div class="col-sm-10">
+            <input type="text" name="question" id="question" class="form-control" value="<%= exam.question ? exam.question : '' %>" required="required" title="Question" placeholder="Question">
+        </div>
+	</div>  -->
+    <!-- <div class="jumbotron"> -->
+        <div class="form-group">
+            <label for="question" class="col-sm-2 control-label">Qn #</label>
+            <div class="col-sm-2">
+                
+                <input type="text" name="question.no" id="question" class="form-control" value="<%= exam.question.no ? exam.question.no : '' %>" required="required" title="Question" placeholder="1"> 
+            </div>
+        </div> 
+
+        <div class="form-group">
+            <label for="questionBody" class="col-sm-2 control-label">Body</label>
+            <div class="col-sm-10">
+                <textarea  class="form-control" rows="4" name="question.body" id="questionBody" value="<%= exam.question.body ? exam.question.body : '' %>" required="required" title="Question" placeholder="Body">
+                
+                </textarea> 
+            <!--type="text" name="question.body" id="questionBody" class="form-control" value="<%= exam.question.body ? exam.question.body : '' %>" required="required" title="Question" placeholder="Body"> -->
+            </div>
+        </div> 
+
+
+        <div class="form-group">
+            <label for="questionChoices" class="col-sm-2 control-label">Multiple Choice</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">A</span>
+                    <input type="text" name="question.choices[0][choice]" id="questionChoices" class="form-control" value="<%= exam.question.choices ? exam.question.choices : '' %>" required="required" title="Question" placeholder="Answer A" aria-describedby="basic-addon1">
+                </div>
+            
+            </div>
+
+            <div class="col-sm-10 col-sm-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">B</span>
+                    <input type="text" name="question.choices[1][choice]" id="questionChoices" class="form-control" value="<%= exam.question.choices ? exam.question.choices : '' %>" required="required" title="Question" placeholder="Answer B" aria-describedby="basic-addon1">
+                </div>
+            
+            </div>
+
+            <div class="col-sm-10 col-sm-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">C</span>
+                    <input type="text" name="question.choices[2][choice]" id="questionChoices" class="form-control" value="<%= exam.question.choices ? exam.question.choices : '' %>" required="required" title="Question" placeholder="Answer C" aria-describedby="basic-addon1">
+                </div>
+            
+            </div>
+
+            <div class="col-sm-10 col-sm-offset-2">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">D</span>
+                    <input type="text" name="question.choices[3][choice]" id="questionChoices" class="form-control" value="<%= exam.question.choices ? exam.question.choices : '' %>" required="required" title="Question" placeholder="Answer D" aria-describedby="basic-addon1">
+                </div>
+            
+            </div>
+
+
+        
+        </div> 
+
+        <div class="row">
+            <div class="form-group col-sm-6" >
+                <label for="correctAnswer" class="col-sm-4 control-label">Correct Answer</label>
+                <div class="col-sm-8">
+                <!-- <input type="text" name="question.correctAnswer" id="question" class="form-control" value="<%= exam.question.correctAnswer ? exam.question.correctAnswer : '' %>" required="required" title="Question" placeholder="Question"> -->
+
+                    <select name="question.correctAnswer" id="correctAnswer" class="form-control" value="<%= exam.question.correctAnswer ? exam.question.correctAnswer : '' %>" required="required" title="Question" placeholder="Question">
+                        <option></option>
+                        <option>A</option>
+                        <option>B</option>
+                        <option>C</option>
+                        <option>D</option>
+                    </select> 
+                </div>
+            </div>
+
+            <div class="form-group col-sm-6 pull-right">
+                <label for="duration" class="col-sm-4 control-label ">Duration</label>
+                <div class="col-sm-8">
+                    <input type="number" min="1" max="15" step="1" name="question.duration" id="duration" class="form-control" value="<%= exam.question.time ? exam.question.time : '' %>" required="required" title="Duration in minutes" placeholder="Question">
+                </div>
+            </div> 
+
+        </div>
+
+        
+    <!-- </div> -->
+    
+
+    
+
+    
+    
+
+    
+
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+            <button type="reset" value="Reset" class="btn btn-warning">Reset</button>
+            <a href="/exams" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</form>
