@@ -31,6 +31,10 @@ router.get('/tutors/login', function(request, response, next){
 	controller.login(request, response, next);
 });
 
+router.post('/tutors/login', function(request, response, next){
+	controller.auth(request, response, next);
+});
+
 /**
  * Handle Http GET on /tutors/new
  * @description return an HTML form for creating a new tutor

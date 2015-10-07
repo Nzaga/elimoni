@@ -70,5 +70,11 @@ var TutorSchema = new Schema({
 //apply TutorSchema level plugins
 TutorSchema.plugin(irina);
 
+TutorSchema.methods.send = function(type, authenticable, done){
+    if (type === 'Account confirmation') {
+        mongoose.model('Tutor').confirm(authenticable.confirmationToken,done);            
+    }
+};
+
 //exports Tutor model
 module.exports = mongoose.model('Tutor', TutorSchema);

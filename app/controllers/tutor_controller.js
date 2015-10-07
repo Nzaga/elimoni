@@ -3,6 +3,7 @@
 //dependencies
 var mongoose = require('mongoose');
 var Tutor = mongoose.model('Tutor');
+//var faker = require('faker');
 
 /**
  * Tutor Controller
@@ -47,6 +48,21 @@ module.exports = {
             });
     },
 
+    auth: function(request, response){
+        Tutor
+            .authenticate(request.body,function(error, authenticable) {
+                if (error) {
+                    console.log(error);
+                    console.log(request.body);
+                } else {
+                    console.log(authenticable);
+                    response
+                        .redirect('/tutors');
+                }
+            });
+        
+    },
+
 
     /**
      * tutors.new()
@@ -74,37 +90,17 @@ module.exports = {
                     console.log(error);
                     next(error);
                 } else {
-                    //console.log(registerable);
-                    response.format({
-                        'text/html': function() {
-                            response
-                                .redirect('/tutors');
-                        },
-
-                        'default': function() {
-                            response
-                                .created(registerable);
-                        }
-                    });
+                    console.log(registerable);
+                    response
+                        .ok('tutors/login.html',{
+                            error: null
+                         });
+                    
+                    
                 }
             });
-            // .create(request.body, function(error, tutor) {
-            //     if (error) {
-            //         next(error);
-            //     } else {
-            //         response.format({
-            //             'text/html': function() {
-            //                 response
-            //                     .redirect('/tutors');
-            //             },
 
-            //             'default': function() {
-            //                 response
-            //                     .created(tutor);
-            //             }
-            //         });
-            //     }
-            // });
+        
     },
 
 
