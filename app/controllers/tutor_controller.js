@@ -96,7 +96,17 @@ module.exports = {
                             error: null
                          });
                     
-                    
+                    // response.format({
+                    //     'text/html': function() {
+                    //         response
+                    //             .redirect('/tutors/login.html');
+                    //     },
+
+                    //     'default': function() {
+                    //         response
+                    //             .created(registerable);
+                    //     }
+                    // });
                 }
             });
 
