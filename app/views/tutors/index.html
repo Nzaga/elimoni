@@ -13,98 +13,25 @@
                     <h3 class="panel-title">Tutor Profile</h3>
                 </div>
                  <div class="panel-body">
-                    
+                    <p>Name    : <%= tutor.name %></p>
+                     <p>Tittle  : <%= tutor.title %></p>
+                     <p>Center  : <%= tutor.center %></p>
+                     <p>School  : <%= tutor.school %></p>
+                     <p>Subject : <%= tutor.subject %></p>
+                     <p>Publish : <%= tutor.publish %></p>
+                     <p>Release : <%= tutor.release %></p>
                 </div>
 
                 <div class="panel-footer">
-                      
+                      <a href="/tutors/<%= tutor._id %>/edit" title="Edit tutor">
                         <button type="button" class="btn btn-primary btn-xs">Edit</button>
                       </a>
                 </div>
           </div>
       </div>
   <div class="col-md-9">
-      <% if(tutors && tutors.length > 0) { %> 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          
-            <th>Center</th>
-          
-            <th>Name</th>
-          
-            <th>Title</th>
-          
-            <th>School</th>
-          
-            <th>Subject</th>
-          
-            <th>TestPrepared</th>
-          
-            <th>Publish</th>
-          
-            <th>Release</th>
-          
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% tutors.forEach(function (tutor) {%>
-          <tr>
-          
-            <td><%= tutor.center %></td>
-          
-            <td><%= tutor.name %></td>
-          
-            <td><%= tutor.title %></td>
-          
-            <td><%= tutor.school %></td>
-          
-            <td><%= tutor.subject %></td>
-          
-            <td><%= tutor.testPrepared %></td>
-          
-            <td><%= tutor.publish %></td>
-          
-            <td><%= tutor.release %></td>
-          
-            <td>
-              <a href="/tutors/<%= tutor._id %>/edit" title="Edit tutor">
-                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-              </a>
-            </td>
-            <td>
-              <form method="POST" action="/tutors/<%= tutor._id %>?_method=DELETE" role="form">
-                <button type="submit" class="btn-link" title="Delete tutor">
-                  <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-                </button>
-              </form>
-            </td>
-            <td>
-              <a href="/tutors/<%= tutor._id %>" title="View tutor">
-                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              </a>
-            </td>
-        </tr>
-        <% }); %>
-      </tbody>
-    </table>
-    <%}else{%>
-      <h4>No tutors found</h4>
-    <%}%>
-
-    <%if ((paginate.hasPreviousPages) || (paginate.hasNextPages(pages))){%>
-       <ul class="pager">
-        <%if(paginate.hasPreviousPages){%>
-        <li><a href="<%=paginate.href(true)%>" title="Previous tutors results">Previous</a></li>
-        <%}%>
-        <%if(paginate.hasNextPages(pages)){%>
-        <li><a href="<%=paginate.href()%>" title="Next tutor results">&nbsp;&nbsp;Next&nbsp;&nbsp;</a></li>
-        <%}%>
-      </ul>
-    <%}%>
+      <p><%= tutor.name %></p>
+     
   </div>
 </div>
 

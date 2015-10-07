@@ -57,7 +57,11 @@ module.exports = {
                 } else {
                     console.log(authenticable);
                     response
-                        .redirect('/tutors');
+                        // .redirect('/tutors');
+                        .ok('tutors/index.html',{
+                            error: null,
+                            tutor: authenticable
+                        });
                 }
             });
         
