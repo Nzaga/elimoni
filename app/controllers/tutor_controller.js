@@ -57,12 +57,24 @@ module.exports = {
                 } else {
                     request.session.tutor = authenticable._id;
                     if(request.session.tutor){
-                        response
-                        // .redirect('/tutors');
-                            .ok('tutors/index.html',{
-                                error: null,
-                                tutor: authenticable
+                        Tutor
+                            .findById(authenticable._id)
+                            .populate('testPrepared')
+                            .exec(function(error,tutor){
+                                if(error){
+                                    console.log(error);
+                                }else{
+                                    console.log('exams found');
+                                    console.log(tutor.testPrepared);
+                                    response
+                                // .redirect('/tutors');
+                                    .ok('tutors/index.html',{
+                                        error: null,
+                                        tutor: authenticable
+                                    });
+                                }
                             });
+                        
                     }
                     else{
                         console.log('Session not created');
