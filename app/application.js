@@ -6,6 +6,7 @@ var mkdir = require('mkdir-p');
 var path = require('path');
 var _ = require('lodash');
 var express = require('express');
+var session = require('express-session');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var expressWinston = require('express-winston');
@@ -77,6 +78,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(methodOverride('_method'));
+
+//use session
+app.use(session({secret: 'ssshhhhh'}));
 
 
 //setup public directories

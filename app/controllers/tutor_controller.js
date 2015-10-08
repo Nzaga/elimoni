@@ -3,7 +3,7 @@
 //dependencies
 var mongoose = require('mongoose');
 var Tutor = mongoose.model('Tutor');
-//var faker = require('faker');
+
 
 /**
  * Tutor Controller
@@ -48,20 +48,31 @@ module.exports = {
             });
     },
 
+    
     auth: function(request, response){
         Tutor
             .authenticate(request.body,function(error, authenticable) {
                 if (error) {
                     console.log(error);
-                    console.log(request.body);
                 } else {
-                    console.log(authenticable);
-                    response
+                    request.session.tutor = authenticable._id;
+                    if(request.session.tutor){
+                        response
                         // .redirect('/tutors');
-                        .ok('tutors/index.html',{
-                            error: null,
-                            tutor: authenticable
-                        });
+                            .ok('tutors/index.html',{
+                                error: null,
+                                tutor: authenticable
+                            });
+                    }
+                    else{
+                        console.log('Session not created');
+                        response
+                            .ok('/tutors/login.htnl',{
+                                error:null
+                            });
+                    }
+                    
+                    
                 }
             });
         

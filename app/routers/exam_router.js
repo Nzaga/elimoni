@@ -18,6 +18,8 @@ var controller = require(path.join(__dirname, '..', 'controllers', 'exam_control
  * @param  {HttpResponse} response a http response
  */
 router.get('/exams', function(request, response, next) {
+	console.log('exam get router');
+	console.log(request.body);
     controller.index(request, response, next);
 });
 
@@ -29,6 +31,7 @@ router.get('/exams', function(request, response, next) {
  * @param  {HttpResponse} response a http response
  */
 router.get('/exams/new', function(request, response, next) {
+	console.log('exam new router');
     controller.new(request, response, next);
 });
 
@@ -40,6 +43,8 @@ router.get('/exams/new', function(request, response, next) {
  * @param  {HttpResponse} response a http response
  */
 router.post('/exams', function(request, response, next) {
+	console.log('exam post router');
+	console.log(request.body);
     controller.create(request, response, next);
 });
 

@@ -94,29 +94,34 @@ var ExamSchema = new Schema({
     },
     
     question: [{
-
+            
         no: {
 
-         type: String
+             type: String
 
-        },
+            },
 
-        body: {
+            body: {
 
-            type: String
-        },
+                type: String
+            },
 
-        choices: [{
-            choice: String
-        }],
+            choices: [{
 
-        correctAnswer: {
-            type: String
-        },
+                choice: {
 
-        duration: {
-            type: Number
-        }
+                    type: String
+                }
+                
+            }],
+
+            correctAnswer: {
+                type: String
+            },
+
+            duration: {
+                type: Number
+            }  
     
     }],
 

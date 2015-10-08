@@ -124,6 +124,7 @@ module.exports = {
      * @param  {HttpResponse} response a http response
      */
     update: function(request, response, next) {
+        request.body.tutor = request.session.tutor;
         Exam
             .findByIdAndUpdate(
                 request.params.id,
@@ -133,6 +134,7 @@ module.exports = {
                     if (error) {
                         next(error);
                     } else {
+                        console.log(exam);
                         response.format({
                             'text/html': function() {
                                 response
