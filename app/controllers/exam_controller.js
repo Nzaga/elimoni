@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 var Exam = mongoose.model('Exam');
 var Question = mongoose.model('Question');
+var Tutor = mongoose.model('Tutor');
 
 /**
  * Exam Controller
@@ -135,19 +136,34 @@ module.exports = {
                     if (error) {
                         next(error);
                     } else {
-                        console.log(exam);
-                        request.session.exam = exam;
-                        if(request.session.exam){
-                           response
-                            .ok('questions/new.html', {
-                                errors: null,
-                                question: new Question(),
-                                exam: exam
-                            }); 
-                        }
-                        else{
-                            console.log('no exam attribute on session');
-                        }
+                        Tutor
+                            .findByIdAndUpdate(
+                                request.session.tutor,
+                                { $push: {'testPrepared': exam._id}},
+                                {safe: true,upsert:true,new:true},
+                                function(error, tutor){
+                                    if(error){
+                                        console.log('Tutor not found');
+                                        next(error);
+                                    }else{
+                                        console.log('Tutor found');
+                                        console.log(tutor);
+                                        console.log(exam);
+                                        request.session.exam = exam;
+                                        if(request.session.exam){
+                                           response
+                                            .ok('questions/new.html', {
+                                                errors: null,
+                                                question: new Question(),
+                                                exam: exam
+                                            }); 
+                                        }
+                                        else{
+                                            console.log('no exam attribute on session');
+                                        }
+                                    }
+                                });
+                        
                         
                         // response.format({
                         //     'text/html': function() {

@@ -46,11 +46,12 @@ var TutorSchema = new Schema({
     
     },
     
-    testPrepared: {
+    testPrepared: [{
     
-        type: String
+        type: Schema.ObjectId,
+        ref: 'Exam'
     
-    },
+    }],
     
     publish: {
     
