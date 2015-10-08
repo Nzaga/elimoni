@@ -128,7 +128,12 @@ var ExamSchema = new Schema({
       tutor: {
 
           type: Schema.ObjectId
-      }
+      },
+
+      ques: [{
+
+        type: Schema.ObjectId
+      }]
     
 });
 

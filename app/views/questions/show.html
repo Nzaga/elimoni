@@ -1,0 +1,34 @@
+<%- layout('layout.html') %>
+
+<div class="page-header">
+  <h1>Question</h1>
+</div>
+
+<dl class="dl-horizontal">
+  
+      <dt><strong>No</strong></dt>
+      <dd><%= question.no %></dd>
+  
+      <dt><strong>Duration</strong></dt>
+      <dd><%= question.duration %></dd>
+  
+      <dt><strong>Body</strong></dt>
+      <dd><%= question.body %></dd>
+  
+      <dt><strong>CorrectAnswer</strong></dt>
+      <dd><%= question.correctAnswer %></dd>
+  
+      <dt><strong>Choice</strong></dt>
+      <dd><%= question.choice %></dd>
+  
+</dl>
+
+<div class="pull-right">
+	<a href="/questions/<%= question._id %>/edit" title="Edit question" class="btn btn-primary">
+        Edit
+  </a>
+	<form method="POST" action="/questions/<%= question._id %>?_method=DELETE" role="form">
+        <button type="submit" class="btn btn-danger" title="Delete question">Delete</button>
+  </form>
+	<a href="/questions" class="btn btn-default" title="View all questions">Back</a>
+</div>

@@ -1,0 +1,77 @@
+<%- layout('layout.html') %>
+
+<div class="page-header">
+  <h1>Questions</h1>
+</div>
+
+<a href="/questions/new" class="btn btn-primary pull-right">New question</a>
+
+<% if(questions && questions.length > 0) { %> 
+<table class="table table-striped">
+  <thead>
+    <tr>
+      
+        <th>No</th>
+      
+        <th>Duration</th>
+      
+        <th>Body</th>
+      
+        <th>CorrectAnswer</th>
+      
+        <th>Choice</th>
+      
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% questions.forEach(function (question) {%>
+      <tr>
+      
+        <td><%= question.no %></td>
+      
+        <td><%= question.duration %></td>
+      
+        <td><%= question.body %></td>
+      
+        <td><%= question.correctAnswer %></td>
+      
+        <td><%= question.choice %></td>
+      
+        <td>
+          <a href="/questions/<%= question._id %>/edit" title="Edit question">
+            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          </a>
+        </td>
+        <td>
+          <form method="POST" action="/questions/<%= question._id %>?_method=DELETE" role="form">
+            <button type="submit" class="btn-link" title="Delete question">
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </button>
+          </form>
+        </td>
+        <td>
+          <a href="/questions/<%= question._id %>" title="View question">
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+          </a>
+        </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
+<%}else{%>
+  <h4>No questions found</h4>
+<%}%>
+
+<%if ((paginate.hasPreviousPages) || (paginate.hasNextPages(pages))){%>
+   <ul class="pager">
+    <%if(paginate.hasPreviousPages){%>
+    <li><a href="<%=paginate.href(true)%>" title="Previous questions results">Previous</a></li>
+    <%}%>
+    <%if(paginate.hasNextPages(pages)){%>
+    <li><a href="<%=paginate.href()%>" title="Next question results">&nbsp;&nbsp;Next&nbsp;&nbsp;</a></li>
+    <%}%>
+  </ul>
+<%}%>

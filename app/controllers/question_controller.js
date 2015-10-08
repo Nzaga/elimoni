@@ -2,33 +2,33 @@
 
 //dependencies
 var mongoose = require('mongoose');
-var Exam = mongoose.model('Exam');
 var Question = mongoose.model('Question');
+var Exam = mongoose.model('Exam');
 
 /**
- * Exam Controller
+ * Question Controller
  *
- * @description :: Server-side logic for managing Exam.
+ * @description :: Server-side logic for managing Question.
  */
 module.exports = {
     /**
-     * exams.index()
+     * questions.index()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     index: function(request, response, next) {
-        Exam
+        Question
             .paginate({},{
                     page: request.query.page,
                     limit: request.query.limit
                 },
-                function(error, exams, pages, total) {
+                function(error, questions, pages, total) {
                     if (error) {
                         next(error);
                     } else {
                         response
-                            .ok('exams/index.html',{
-                                exams: exams,
+                            .ok('questions/index.html',{
+                                questions: questions,
                                 pages: pages,
                                 count: total
                             });
@@ -38,39 +38,39 @@ module.exports = {
 
 
     /**
-     * exams.new()
+     * questions.new()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     new: function(request, response) {
         response
-            .ok('exams/new.html', {
+            .ok('questions/new.html', {
                 errors: null,
-                exam: new Exam()
+                question: new Question()
             });
     },
 
 
     /**
-     * exams.create()
+     * questions.create()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     create: function(request, response, next) {
-        Exam
-            .create(request.body, function(error, exam) {
+        Question
+            .create(request.body, function(error, question) {
                 if (error) {
                     next(error);
                 } else {
                     response.format({
                         'text/html': function() {
                             response
-                                .redirect('/exams');
+                                .redirect('/questions');
                         },
 
                         'default': function() {
                             response
-                                .created(exam);
+                                .created(question);
                         }
                     });
                 }
@@ -79,19 +79,19 @@ module.exports = {
 
 
     /**
-     * exams.show()
+     * questions.show()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     show: function(request, response, next) {
-        Exam
-            .findById(request.params.id, function(error, exam) {
+        Question
+            .findById(request.params.id, function(error, question) {
                 if (error) {
                     next(error);
                 } else {
                     response
-                        .ok('exams/show.html', {
-                            exam: exam
+                        .ok('questions/show.html', {
+                            question: question
                         });
                 }
             });
@@ -99,19 +99,19 @@ module.exports = {
 
 
     /**
-     * exams.edit()
+     * questions.edit()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     edit: function(request, response, next) {
-        Exam
-            .findById(request.params.id, function(error, exam) {
+        Question
+            .findById(request.params.id, function(error, question) {
                 if (error) {
                     next(error);
                 } else {
                     response
-                        .ok('exams/edit.html', {
-                            exam: exam,
+                        .ok('questions/edit.html', {
+                            question: question,
                             errors: null
                         });
                 }
@@ -120,47 +120,45 @@ module.exports = {
 
 
     /**
-     * exams.update()
+     * questions.update()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     update: function(request, response, next) {
-        request.body.tutor = request.session.tutor;
-        Exam
+        console.log('update question');
+        console.log(request.session.tutor);
+        console.log(request.session.exam._id);
+        Question
             .findByIdAndUpdate(
                 request.params.id,
                 request.body,
                 {upsert:true,new:true},
-                function(error, exam) {
+                function(error, question) {
                     if (error) {
                         next(error);
                     } else {
-                        console.log(exam);
-                        request.session.exam = exam;
-                        if(request.session.exam){
-                           response
-                            .ok('questions/new.html', {
-                                errors: null,
-                                question: new Question(),
-                                exam: exam
-                            }); 
-                        }
-                        else{
-                            console.log('no exam attribute on session');
-                        }
-                        
-                        // response.format({
-                        //     'text/html': function() {
-                        //         response
-                        //             .redirect('/exams');
-                                    
-                        //     },
+                        console.log(question._id);       
+                        Exam.findByIdAndUpdate(
+                            request.session.exam._id, 
+                            { $push: {'ques': question._id}}, 
+                            {safe: true,upsert:true,new:true},
+                            function(error,exam){
+                            if(error){
+                                console.log('Exam not obtaied');
+                                next(error);
+                            }else{
+                                console.log('Exam obtained');
+                                console.log(exam);
 
-                        //     'default': function() {
-                        //         response
-                        //             .ok(exam);
-                        //     }
-                        // });
+                                response
+                                    .ok('questions/new.html', {
+                                        errors: null,
+                                        question: new Question(),
+                                        exam: exam
+                                    });
+                            }
+                        });
+                        
 
                     }
                 });
@@ -168,27 +166,27 @@ module.exports = {
 
 
     /**
-     * exams.destroy()
+     * questions.destroy()
      * @param  {HttpRequest} request  a http request
      * @param  {HttpResponse} response a http response
      */
     destroy: function(request, response, next) {
-        Exam
+        Question
             .findByIdAndRemove(
                 request.params.id,
-                function(error, exam) {
+                function(error, question) {
                     if (error) {
                         next(error);
                     } else {
                         response.format({
                             'text/html': function() {
                                 response
-                                    .redirect('/exams');
+                                    .redirect('/questions');
                             },
 
                             'default': function() {
                                 response
-                                    .ok(exam);
+                                    .ok(question);
                             }
                         });
                     }
