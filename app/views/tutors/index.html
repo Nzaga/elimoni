@@ -20,7 +20,7 @@
                      <p>Subject : <%= tutor.subject %></p>
                      <p>Publish : <%= tutor.publish %></p>
                      <p>Release : <%= tutor.release %></p>
-                     <p>Exams : <%= exam.length %></p>
+                     <p>Exams : <%= exams.length %></p>
                 </div>
 
                 <div class="panel-footer">
@@ -31,7 +31,114 @@
           </div>
       </div>
   <div class="col-md-9">
-      <p><%= tutor.name %></p>
+      <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title">Exams</h3>
+        </div>
+        <div class="panel-body">
+          <% if(exams && exams.length > 0) { %> 
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                    <!-- <th>Status</th> -->
+                    <th>Subject</th>
+                    
+                    <th>SeriesNo</th>
+                    
+                    <th>Published</th> 
+                    
+                    <th>Released</th> 
+                    
+                    <th>Fee</th>
+                    
+                    <th>Student</th>
+                    
+                    <th>TotalAmount</th>
+                    
+                    <th>WeekStudent</th>
+                    
+                    <th>WeekTotal</th>
+                    
+                      <!-- <th>Time</th> -->
+                    
+                      <!-- <th>Instruction</th> -->
+                    
+                    <!-- <th>Level</th>
+                    
+                      
+                    <th>Enroll</th> -->
+
+
+                    
+                      <!-- <th>Question</th>
+                    
+                      <th>&nbsp;</th>
+                      <th>&nbsp;</th>
+                      <th>&nbsp;</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <% exams.forEach(function (exam) {%>
+                    <tr>
+                    
+                      <!-- <td><%= exam.status %></td> -->
+                      <td><%= exam.subject %></td>
+                    
+                      <td><%= exam.seriesNo %></td>
+                    
+                      <td><%= exam.published %></td> 
+                    
+                      <td><%= moment(exam.release).format("DD-MM-YYYY") %></td>
+                    
+                      <td><%= exam.fee %></td> 
+                    
+                      <td><%= exam.students %></td>
+                    
+                      <td><%= exam.totalAmount %></td>
+                    
+                      <td><%= exam.weekStudents %></td>
+                    
+                      <td><%= exam.weekTotal %></td>
+                    
+                      <!-- <td><%= exam.time %></td> -->
+                    
+                      <!-- <td><%= exam.instruction %></td> -->
+                    
+                      <!-- <td><%= exam.level %></td>
+                    
+                      
+
+                      <td><button class="btn btn-success btn-xs" data-target="#theModal" data-toggle="modal">Inroll</button></td> -->
+                    
+                      <!-- <td><%= exam.question %></td> -->
+                    
+                      <!-- <td>
+                        <a href="/exams/<%= exam._id %>/edit" title="Edit exam">
+                          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                      </td>
+                      <td>
+                        <form method="POST" action="/exams/<%= exam._id %>?_method=DELETE" role="form">
+                          <button type="submit" class="btn-link" title="Delete exam">
+                            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                          </button>
+                        </form>
+                      </td>
+                      <td>
+                        <a href="/exams/<%= exam._id %>" title="View exam">
+                          <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        </a>
+                      </td> -->
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+              <%}else{%>
+                <h4>No exams found</h4>
+              <%}%>
+        </div>
+    </div>
+      
      
   </div>
 </div>

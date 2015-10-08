@@ -71,7 +71,7 @@ module.exports = {
                                     .ok('tutors/index.html',{
                                         error: null,
                                         tutor: authenticable,
-                                        exam: tutor.testPrepared
+                                        exams: tutor.testPrepared
                                     });
                                 }
                             });
