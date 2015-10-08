@@ -70,7 +70,8 @@ module.exports = {
                                 // .redirect('/tutors');
                                     .ok('tutors/index.html',{
                                         error: null,
-                                        tutor: authenticable
+                                        tutor: authenticable,
+                                        exam: tutor.testPrepared
                                     });
                                 }
                             });
