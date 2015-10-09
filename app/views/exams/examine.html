@@ -1,0 +1,69 @@
+<%- layout('site.html') %>
+
+<div class="container content">
+	<div class="page-header">
+    	<h3>Examine</h3>
+  	</div>
+
+  	<div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+      	<div class="col-md-4">
+      		<p>Subject : <%= exam.subject %></p>
+      	</div>
+
+      	<div class="col-md-4">
+      		<p>Level : <%= exam.level %> </p>
+      	</div>
+
+      	<div class="col-md-4">
+      		<p>Series No : <%= exam.seriesNo %></p>
+      	</div>
+      </div>
+
+      <div class="row">
+      	<div class="col-md-12">
+      		<p>Instruction : <%= exam.intruction %></p>
+      	</div>
+      	
+      </div>
+
+      <div class="row">
+      	<div class="col-md-8">
+      		<p>Total time : <%= exam.time %></p>
+      	</div>
+
+      	<div class="col-md-4">
+      		<p>Total time left: </p>
+      	</div>
+      	
+      </div>
+        
+    </div>
+    <!-- <div class="panel-body">
+      Basic panel example
+    </div> -->
+  </div>
+
+
+  <div class="panel panel-default">
+	  <div class="panel-heading">
+	  	<div class="row">
+	  		<div class="col-md-6">
+	  			<h3 class="panel-title">Qn no: #</h3>
+	  		</div>
+	  		<!-- <div class="col-md-3">
+	  			Time : 
+	  		</div>
+	  		<div class="col-md-3">
+	  			Time left :
+	  		</div> -->
+	  	</div>
+	    
+	  </div>
+	  <div class="panel-body">
+	    <p><%= exam.ques.length%></p>
+	  </div>
+  </div>
+	
+</div>

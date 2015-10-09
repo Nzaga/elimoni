@@ -59,6 +59,9 @@ router.get('/exams/:id', function(request, response, next) {
     controller.show(request, response, next);
 });
 
+router.get('/exams/:id/examine', function(request, response, next){
+    controller.examine(request, response, next);
+});
 
 
 /**

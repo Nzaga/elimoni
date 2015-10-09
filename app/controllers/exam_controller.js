@@ -102,6 +102,23 @@ module.exports = {
 
     },
 
+    examine: function(request, response, next) {
+        Exam
+            .findById(request.params.id)
+            .populate('ques')
+            .exec(function(error,exam){
+                if(error){
+                    next(error);
+                }else{
+                    response
+                        .ok('exams/examine.html',{
+                            exam: exam,
+                            questions: exam.ques
+                        });
+                }
+            });
+    },
+
 
     /**
      * exams.edit()
@@ -167,20 +184,6 @@ module.exports = {
                                         }
                                     }
                                 });
-                        
-                        
-                        // response.format({
-                        //     'text/html': function() {
-                        //         response
-                        //             .redirect('/exams');
-                                    
-                        //     },
-
-                        //     'default': function() {
-                        //         response
-                        //             .ok(exam);
-                        //     }
-                        // });
 
                     }
                 });
@@ -214,5 +217,7 @@ module.exports = {
                     }
                 });
     }
+
+
 
 };

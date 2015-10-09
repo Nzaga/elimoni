@@ -125,9 +125,6 @@ module.exports = {
      * @param  {HttpResponse} response a http response
      */
     update: function(request, response, next) {
-        console.log('update question');
-        console.log(request.session.tutor);
-        console.log(request.session.exam._id);
         Question
             .findByIdAndUpdate(
                 request.params.id,
@@ -136,8 +133,7 @@ module.exports = {
                 function(error, question) {
                     if (error) {
                         next(error);
-                    } else {
-                        console.log(question._id);       
+                    } else {     
                         Exam.findByIdAndUpdate(
                             request.session.exam._id, 
                             { $push: {'ques': question._id}}, 
@@ -147,9 +143,6 @@ module.exports = {
                                 console.log('Exam not obtaied');
                                 next(error);
                             }else{
-                                console.log('Exam obtained');
-                                console.log(exam);
-
                                 response
                                     .ok('questions/new.html', {
                                         errors: null,

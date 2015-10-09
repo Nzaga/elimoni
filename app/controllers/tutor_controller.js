@@ -64,10 +64,7 @@ module.exports = {
                                 if(error){
                                     console.log(error);
                                 }else{
-                                    console.log('exams found');
-                                    console.log(tutor.testPrepared);
                                     response
-                                // .redirect('/tutors');
                                     .ok('tutors/index.html',{
                                         error: null,
                                         tutor: authenticable,
@@ -118,23 +115,10 @@ module.exports = {
                     console.log(error);
                     next(error);
                 } else {
-                    console.log(registerable);
                     response
                         .ok('tutors/login.html',{
                             error: null
                          });
-                    
-                    // response.format({
-                    //     'text/html': function() {
-                    //         response
-                    //             .redirect('/tutors/login.html');
-                    //     },
-
-                    //     'default': function() {
-                    //         response
-                    //             .created(registerable);
-                    //     }
-                    // });
                 }
             });
 
