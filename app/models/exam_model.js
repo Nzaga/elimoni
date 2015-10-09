@@ -132,7 +132,9 @@ var ExamSchema = new Schema({
 
       ques: [{
 
-        type: Schema.ObjectId
+        type: Schema.ObjectId,
+        ref: 'Question'
+
       }]
     
 });

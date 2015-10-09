@@ -86,16 +86,20 @@ module.exports = {
      */
     show: function(request, response, next) {
         Exam
-            .findById(request.params.id, function(error, exam) {
-                if (error) {
+            .findById(request.params.id)
+            .populate('ques')
+            .exec(function(error,exam){
+                if(error){
                     next(error);
-                } else {
+                }else{
                     response
-                        .ok('exams/show.html', {
-                            exam: exam
+                        .ok('exams/show.html',{
+                            exam: exam,
+                            question: exam.ques
                         });
                 }
             });
+
     },
 
 

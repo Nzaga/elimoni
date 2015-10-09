@@ -97,9 +97,15 @@
                     
                       <td><%= exam.level %></td>
                     
-                      
+                      <td>
+                        <a href="/exams/<%= exam._id %>" title="View exam">
+                          <button class="btn btn-success btn-xs" >Inroll</button>
+                        </a>
+                      </td> 
 
-                      <td><button class="btn btn-success btn-xs" data-target="#theModal" data-toggle="modal">Inroll</button></td>
+                      <!-- <td>
+                        <button class="btn btn-success btn-xs" data-target="#theModal" data-toggle="modal">Inroll</button>
+                      </td> -->
                     
                       <!-- <td><%= exam.question %></td> -->
                     

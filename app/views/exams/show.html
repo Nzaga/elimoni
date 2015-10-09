@@ -1,61 +1,88 @@
-<%- layout('layout.html') %>
+<%- layout('site.html') %>
 
-<div class="page-header">
-  <h1>Exam</h1>
-</div>
+<div class="container content">
+  <div class="page-header">
+    <h2>Exam</h2>
+  </div>
 
-<dl class="dl-horizontal">
-  
-      <dt><strong>Subject</strong></dt>
-      <dd><%= exam.subject %></dd>
-  
-      <dt><strong>SeriesNo</strong></dt>
-      <dd><%= exam.seriesNo %></dd>
-  
-      <dt><strong>Published</strong></dt>
-      <dd><%= exam.published %></dd>
-  
-      <dt><strong>Released</strong></dt>
-      <dd><%= exam.released %></dd>
-  
-      <dt><strong>Fee</strong></dt>
-      <dd><%= exam.fee %></dd>
-  
-      <dt><strong>Student</strong></dt>
-      <dd><%= exam.students %></dd>
-  
-      <dt><strong>TotalAmount</strong></dt>
-      <dd><%= exam.totalAmount %></dd>
-  
-      <dt><strong>WeekStudent</strong></dt>
-      <dd><%= exam.weekStudents %></dd>
-  
-      <dt><strong>WeekTotal</strong></dt>
-      <dd><%= exam.weekTotal %></dd>
-  
-      <dt><strong>Time</strong></dt>
-      <dd><%= exam.time %></dd>
-  
-      <dt><strong>Instruction</strong></dt>
-      <dd><%= exam.instruction %></dd>
-  
-      <dt><strong>Level</strong></dt>
-      <dd><%= exam.level %></dd>
-  
-      <dt><strong>Status</strong></dt>
-      <dd><%= exam.status %></dd>
-  
-      <dt><strong>Question</strong></dt>
-      <dd><%= exam.question %></dd>
-  
-</dl>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-sm-1">
+          <p>Subject</p>
+          <p>Series No</p>
+          <p>Level</p>
+          <p>Tutor</p>
+          <p>Instruction</p>
+          <p>Time</p>
+        </div>
 
-<div class="pull-right">
-	<a href="/exams/<%= exam._id %>/edit" title="Edit exam" class="btn btn-primary">
-        Edit
-  </a>
-	<form method="POST" action="/exams/<%= exam._id %>?_method=DELETE" role="form">
-        <button type="submit" class="btn btn-danger" title="Delete exam">Delete</button>
-  </form>
-	<a href="/exams" class="btn btn-default" title="View all exams">Back</a>
+        <div class="col-sm-11">
+          <p>: <%= exam.subject %></p>
+          <p>: <%= exam.seriesNo %></p>
+          <p>: <%= exam.level %></p>
+          <p>: <%= exam.tutor %></p>
+          <p>: <%= exam.intruction %></p>
+          <p>: <%= exam.time %></p>
+
+        </div>
+        
+      </div>
+    </div>
+    <!-- <div class="panel-body">
+      Basic panel example
+    </div> -->
+  </div>
+
+  <% if (exam.ques.length > 0){%>
+
+          <% exam.ques.forEach(function(question){%>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h3 class="panel-title">Qn no: #</h3>
+                  </div>
+                  <div class="col-md-2">
+                    <p>Duration : <%= question.duration %> min</p>
+                  </div>
+                </div>
+                
+                
+              </div>
+              <div class="panel-body">
+                <dd><%= question.body %></dd>
+                  <ol type="A">
+                    <% question.choice.forEach(function(choice){%>
+                    <li><%= choice.answer %></li>
+                    <%})%>
+                  </ol>
+                  
+                  
+              </div>
+              <div class="panel-footer">Correct Answer : <%= question.correctAnswer %></div>
+            </div>
+          <%});%>
+        <%}else{%>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">No question found</h3>
+            </div>
+            <div class="panel-body">
+              <strong>Please publish the questions</strong>  
+            </div>
+        </div>
+          
+          
+        <%}%>
+  <!-- <div class="pull-right">
+    <a href="/exams/<%= exam._id %>/edit" title="Edit exam" class="btn btn-primary">
+          Edit
+    </a>
+    <form method="POST" action="/exams/<%= exam._id %>?_method=DELETE" role="form">
+          <button type="submit" class="btn btn-danger" title="Delete exam">Delete</button>
+    </form>
+    <a href="/exams" class="btn btn-default" title="View all exams">Back</a>
+  </div> -->
+  
 </div>
