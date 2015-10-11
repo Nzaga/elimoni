@@ -115,6 +115,7 @@ module.exports = {
                     console.log(error);
                     next(error);
                 } else {
+                    console.log(registerable);
                     response
                         .ok('tutors/login.html',{
                             error: null

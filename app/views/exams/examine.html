@@ -45,25 +45,95 @@
     </div> -->
   </div>
 
+    <% if(exam.ques.length > 0){%>
+      <% exam.ques.forEach(function(question){%>
+        <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h3 class="panel-title">Qn no: <%= question.no %></h3>
+                  </div>
+                  <div class="col-md-2">
+                    <p>Duration : <%= question.duration %> min</p>
+                  </div>
+                </div>
+                
+                
+              </div>
+              <div class="panel-body">
+                <dd><%= question.body %></dd>
+                <ol>
+                  <% for(var i = 0; i < question.choice.length; i++){%>
+                    <% if (i == 0){%>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="<%= question.no %>" id="A" value="A">
+                          &#65; )  <%= question.choice[0].answer %>
+                        </label>
+                      </div>
+                    <%}else if( i == 1){%>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="<%= question.no %>" id="B" value="B">
+                          &#66; )  <%= question.choice[1].answer %>
+                        </label>
+                      </div>
+                    <%}else if( i == 2){%>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="<%= question.no %>" id="C" value="C">
+                          &#67; )  <%= question.choice[2].answer %>
+                        </label>
+                      </div>
+                    <%}else if( i == 3){%>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="<%= question.no %>" id="D" value="D">
+                          &#68; )  <%= question.choice[3].answer %>
+                        </label>
+                      </div>
+                    <%}%>
+                    
+                  <%}%>
+                  </ol>     
+              </div>
+              <!-- <div class="panel-footer"></div> -->
+            </div>
 
-  <div class="panel panel-default">
-	  <div class="panel-heading">
-	  	<div class="row">
-	  		<div class="col-md-6">
-	  			<h3 class="panel-title">Qn no: #</h3>
-	  		</div>
-	  		<!-- <div class="col-md-3">
-	  			Time : 
-	  		</div>
-	  		<div class="col-md-3">
-	  			Time left :
-	  		</div> -->
-	  	</div>
-	    
-	  </div>
-	  <div class="panel-body">
-	    <p><%= exam.ques.length%></p>
-	  </div>
+
+      <%});%>
+       <button type="button" id="submit" class="btn btn-success" onclick="myFunction();" 
+       data-questions=<%= exam.ques.length %> >Success <%= exam.ques.length %></button>
+    <%}else{%>
+      <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">No question found</h3>
+            </div>
+            <div class="panel-body">
+              <strong>Please publish the questions</strong>  
+            </div>
+        </div>
+          
+    <%}%>
+	  
   </div>
 	
 </div>
+
+<script>
+function myFunction( ) {
+    var button = document.getElementById("submit");
+    var questions = button.getAttribute('data-questions');
+    for (var i = 1; i <= questions; i++){
+      var question = document.getElementsByName(i);
+      var selected;
+      for (var q = 0; q < question.length; q++){
+        if ( question[q].checked){
+          selected = question[q].value;
+        }
+      }
+      console.log(selected);
+    }
+    
+}
+</script>
