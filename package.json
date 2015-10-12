@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "description": "A best application ever",
   "scripts": {
-    "test": "grunt spec",
-    "start": "node server.js"
+    "test": "NODE_ENV=test grunt spec",
+    "start": "NODE_ENV=production node server.js"
+  },
   },
   "dependencies": {
     "async": "^1.4.2",

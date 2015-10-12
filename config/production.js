@@ -21,14 +21,14 @@ module.exports = {
      * @description application port
      * @type {Number}
      */
-    port: 3000,
+    port: process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 3002,
 
 
     /**
      * @description application ip address
      * @type {String}
      */
-    ip: '127.0.0.1',
+    ip: process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1",
 
 
     /**
@@ -37,10 +37,10 @@ module.exports = {
      */
     mongoose: {
         database: 'elimu',
-        host: '127.0.0.1',
-        user: '',
-        password: '',
-        port: 27017,
+        host: process.env.OPENSHIFT_MONGODB_DB_HOST,
+        user: process.env.OPENSHIFT_MONGODB_DB_USERNAME,
+        password: process.env.OPENSHIFT_MONGODB_DB_PASSWORD,
+        port: process.env.OPENSHIFT_MONGODB_DB_PORT,
         options: {
             db: {
                 safe: true
