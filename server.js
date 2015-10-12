@@ -14,7 +14,7 @@ app.set('ip', config.get('ip'));
 
 //lift up application server
 app
-    .listen(app.get('port'), function() {
+    .listen(app.get('port'),app.get('ip'), function() {
         winston.debug(
             'Application server listening on port %d in %s environment',
             app.get('port'),
